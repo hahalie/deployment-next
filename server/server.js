@@ -13,10 +13,7 @@ dotenv.config();
 
 //* Redis Storage Starts
 // Create a new redis client
-const RedisClient = redis.createClient({
-  host: "127.0.0.1",
-  port: 6379,
-});
+const RedisClient = redis.createClient(process.env.REDIS_URL);
 // Use Node's `promisify` to have redis return a promise from the client methods
 const getAsync = promisify(RedisClient.get).bind(RedisClient);
 const setAsync = promisify(RedisClient.set).bind(RedisClient);
